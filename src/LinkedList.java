@@ -255,11 +255,6 @@ public class LinkedList {
 
         return list;
     }
-
-    public static void main(String[] args) {
-        var list = new LinkedList();
-        System.out.println(Arrays.toString(list.toArray()));
-    }
 }
 
 
