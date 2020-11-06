@@ -17,62 +17,54 @@ public class HashTable {
     private LinkedList<Entry>[] entries = new LinkedList[SIZE];
 
     public void put(int key, String value) {
-        int index = hash(key);
-        if (entries[index] == null)
-            entries[index] = new LinkedList<>();
+        var entry = getEntry(key);
+        if (entry != null) {
+            entry.value = value;
+            return;
+        }
 
-        var bucket = entries[index];
-        for (var entry : bucket)
-            if (entry.key == key) {
-                entry.value = value;
-                return;
-            }
-
-        bucket.addLast(new Entry(key, value));
+        getOrCreateBucket(key).addLast(new Entry(key, value));
     }
 
     public String get(int key) {
-        int index = hash(key);
-        var bucket = entries[index];
+        var entry = getEntry(key);
+        return entry == null ? null : entry.value;
+    }
+
+    public void remove(int key) {
+        var entry = getEntry(key);
+        if (entry == null)
+            throw new IllegalStateException();
+        getBucket(key).remove(entry);
+    }
+
+    private Entry getEntry(int key) {
+        var bucket = getBucket(key);
 
         if (bucket != null)
-            for (Entry entry : bucket)
+            for (var entry : bucket)
                 if (entry.key == key)
-                    return entry.value;
+                    return entry;
 
         return null;
     }
 
-    public void remove(int key) {
-        int index = hash(key);
+    private LinkedList<Entry> getBucket(int key) {
+        return entries[hash(key)];
+    }
+
+    private LinkedList<Entry> getOrCreateBucket(int key) {
+        var index = hash(key);
         var bucket = entries[index];
-
         if (bucket == null)
-            throw new IllegalStateException();
+            entries[index] = new LinkedList<>();
 
-        for (Entry entry : bucket)
-            if (entry.key == key) {
-                bucket.remove(entry);
-                return;
-            }
 
-        throw new IllegalStateException();
+        return entries[index];
     }
 
 
     private int hash(int key) {
         return key % entries.length;
-    }
-
-    public static void main(String[] args) {
-        var table = new HashTable();
-        table.put(0, "0");
-        table.put(1, "1");
-        table.put(2, "2");
-        table.put(3, "3");
-        table.put(4, "4");
-        table.put(5, "5");
-        table.put(2, "12");
-        System.out.println();
     }
 }
