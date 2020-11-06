@@ -1,4 +1,5 @@
-import java.util.Arrays;
+package linear;
+
 import java.util.NoSuchElementException;
 
 public class LinkedList {
@@ -191,9 +192,9 @@ public class LinkedList {
         }
 
         if (b == last)
-            System.out.println("Odd -> The middle of this LinkedList is: " + a.value);
+            System.out.println("Odd -> The middle of this linear.LinkedList is: " + a.value);
         else
-            System.out.println("Even -> The middle of this LinkedList are: " + a.value + ", " + a.next.value);
+            System.out.println("Even -> The middle of this linear.LinkedList are: " + a.value + ", " + a.next.value);
     }
 
     public boolean hasLoop() {

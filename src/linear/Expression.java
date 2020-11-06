@@ -1,3 +1,5 @@
+package linear;
+
 import kotlin.UninitializedPropertyAccessException;
 
 import java.util.Arrays;

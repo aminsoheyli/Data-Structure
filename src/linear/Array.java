@@ -1,4 +1,4 @@
-import java.util.Arrays;
+package linear;
 
 public class Array {
     private int[] items;
@@ -125,7 +125,7 @@ public class Array {
             itemsStr += items[i] + ", ";
         }
         itemsStr += "]";
-        return "Array{" +
+        return "linear.Array{" +
                 "items=" + itemsStr +
                 ", count=" + count +
                 '}';

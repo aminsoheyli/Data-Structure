@@ -1,5 +1,5 @@
-import javax.swing.*;
-import java.util.Hashtable;
+package linear;
+
 import java.util.LinkedList;
 
 public class HashTable {
