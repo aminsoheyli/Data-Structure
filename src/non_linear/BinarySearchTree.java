@@ -124,17 +124,6 @@ public class BinarySearchTree {
 
     // O(log n) for Binary Search Tree
     public int min() {
-//        if (root == null)
-//            throw new IllegalStateException();
-//
-//        var current = root;
-//        var last = current;
-//        while (current != null) {
-//            last = current;
-//            current = current.leftChild;
-//        }
-//        return last.value;
-
         return min(root);
     }
 
