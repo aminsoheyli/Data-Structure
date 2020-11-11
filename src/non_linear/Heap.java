@@ -9,7 +9,8 @@ public class Heap {
     }
 
     public static void heapify(int[] array) {
-        for (int i = 0; i < array.length; i++)
+        var lastParentIndex = array.length / 2 - 1;
+        for (int i = lastParentIndex; i >= 0; i--)
             heapify(array, i);
     }
 
