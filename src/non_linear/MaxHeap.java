@@ -120,4 +120,10 @@ public class MaxHeap {
     private int rightChildIndex(int index) {
         return index * 2 + 2;
     }
+
+    public int max() {
+        if (isEmpty())
+            throw new IllegalStateException();
+        return items[0];
+    }
 }

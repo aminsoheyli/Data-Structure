@@ -39,4 +39,18 @@ public class Heap {
         array[first] = array[second];
         array[second] = temp;
     }
+
+    public static int getKthLargest(int[] array, int k) {
+        if (k < 1 || k > array.length)
+            throw new IllegalArgumentException("K must be greater than 1 or less than or equal to the length of the array");
+
+        var heap = Heap.createMaxHeap(array.length);
+        for (int item : array)
+            heap.insert(item);
+
+        for (int i = 0; i < k - 1; i++)
+            heap.remove();
+
+        return heap.max();
+    }
 }
