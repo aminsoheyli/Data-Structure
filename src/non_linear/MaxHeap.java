@@ -4,7 +4,16 @@ public class MaxHeap {
     private int[] items;
     int size = 0;
 
-    public MaxHeap(int size) {
+    /**
+     * Use {@link Heap#createMaxHeap(int)}  Heap.createMaxHeap(size)}
+     */
+    private MaxHeap() {
+    }
+
+    /**
+     * Use {@link Heap#createMaxHeap(int)}  Heap.createMaxHeap(size)}
+     */
+    MaxHeap(int size) {
         items = new int[size];
     }
 
