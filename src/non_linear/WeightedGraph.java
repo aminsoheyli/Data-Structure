@@ -1,9 +1,6 @@
 package non_linear;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class WeightedGraph {
     private class Node {
@@ -60,6 +57,73 @@ public class WeightedGraph {
 
         fromNode.addEdge(toNode, weight);
         toNode.addEdge(fromNode, weight);
+    }
+
+    private class NodeEntry {
+        private Node node;
+        private int priority;
+
+        public NodeEntry(Node node, int priority) {
+            this.node = node;
+            this.priority = priority;
+        }
+    }
+
+    public Path getShortestPath(String from, String to) {
+        var fromNode = nodes.get(from);
+        var toNode = nodes.get(to);
+        if (fromNode == null || toNode == null)
+            throw new IllegalArgumentException();
+
+        Map<Node, Integer> distances = new HashMap<>();
+        for (var node : nodes.values())
+            distances.put(node, Integer.MAX_VALUE);
+        distances.replace(fromNode, 0);
+
+        Set<Node> visited = new HashSet<>();
+
+        Map<Node, Node> previousNodes = new HashMap<>();
+
+        PriorityQueue<NodeEntry> queue = new PriorityQueue<>(
+                Comparator.comparingInt(ne -> ne.priority)
+        );
+
+        queue.add(new NodeEntry(fromNode, 0));
+
+        while (!queue.isEmpty()) {
+            var current = queue.remove().node;
+            visited.add(current);
+
+            for (var edge : current.getEdges()) {
+                if (visited.contains(edge.to))
+                    continue;
+
+                var newDistance = distances.get(current) + edge.weight;
+                if (newDistance < distances.get(edge.to)) {
+                    distances.replace(edge.to, newDistance);
+                    previousNodes.put(edge.to, current);
+                    queue.add(new NodeEntry(edge.to, newDistance));
+                }
+            }
+        }
+
+        return buildPath(previousNodes, toNode);
+    }
+
+    private Path buildPath(Map<Node, Node> previousNodes, Node toNode) {
+        Stack<Node> stack = new Stack<>();
+        stack.push(toNode);
+        var previous = previousNodes.get(toNode);
+        while (previous != null) {
+            stack.push(previous);
+            previous = previousNodes.get(previous);
+        }
+
+        var path = new Path();
+        while (!stack.isEmpty())
+            path.add(stack.pop().label);
+
+        return path;
     }
 
     public void print() {
