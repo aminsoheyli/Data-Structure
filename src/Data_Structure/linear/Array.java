@@ -1,4 +1,4 @@
-package linear;
+package Data_Structure.linear;
 
 public class Array {
     private int[] items;
@@ -125,7 +125,7 @@ public class Array {
             itemsStr += items[i] + ", ";
         }
         itemsStr += "]";
-        return "linear.Array{" +
+        return "Data_Structure.linear.Array{" +
                 "items=" + itemsStr +
                 ", count=" + count +
                 '}';

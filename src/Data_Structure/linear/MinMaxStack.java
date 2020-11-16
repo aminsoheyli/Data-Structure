@@ -1,4 +1,4 @@
-package linear;
+package Data_Structure.linear;
 
 /**
  * This class can retrieve the min/max in constant time of O(1).

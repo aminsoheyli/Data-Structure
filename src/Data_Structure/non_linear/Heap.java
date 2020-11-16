@@ -1,4 +1,4 @@
-package non_linear;
+package Data_Structure.non_linear;
 
 public class Heap {
     private Heap() {

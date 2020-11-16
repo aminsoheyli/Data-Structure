@@ -1,7 +1,7 @@
-package linear;
+package Data_Structure.linear;
 
-import non_linear.Heap;
-import non_linear.MaxHeap;
+import Data_Structure.non_linear.Heap;
+import Data_Structure.non_linear.MaxHeap;
 
 public class PriorityQueueWithHeap {
     private MaxHeap heap;

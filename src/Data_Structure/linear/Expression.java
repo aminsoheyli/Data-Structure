@@ -1,4 +1,4 @@
-package linear;
+package Data_Structure.linear;
 
 import kotlin.UninitializedPropertyAccessException;
 
