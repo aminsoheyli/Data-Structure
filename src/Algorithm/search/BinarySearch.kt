@@ -10,6 +10,10 @@ class BinarySearch {
         return searchRecursive(array, target)
     }
 
+    fun search(array: IntArray, target: Int, left: Int, right: Int): Int {
+        return searchIterative(array, target, left, right)
+    }
+
     private fun searchRecursive(array: IntArray, target: Int): Int {
         return searchRecursive(array, target, 0, array.size - 1)
     }
@@ -31,6 +35,25 @@ class BinarySearch {
     private fun searchIterative(array: IntArray, target: Int): Int {
         var left = 0
         var right = array.size - 1
+
+        while (left <= right) {
+            var middle = (left + right) / 2
+
+            if (array[middle] == target)
+                return middle
+
+            if (target < array[middle])
+                right = middle - 1
+            else
+                left = middle + 1
+        }
+
+        return -1
+    }
+
+    private fun searchIterative(array: IntArray, target: Int, leftIndex: Int, rightIndex: Int): Int {
+        var left = leftIndex
+        var right = rightIndex
 
         while (left <= right) {
             var middle = (left + right) / 2
