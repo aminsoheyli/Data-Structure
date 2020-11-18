@@ -3,7 +3,9 @@ package Algorithm.search
 import kotlin.math.sign
 
 class BinarySearch {
-
+    /**
+     * Only works correctly with sorted arrays
+     */
     fun search(array: IntArray, target: Int): Int {
         return searchRecursive(array, target)
     }
