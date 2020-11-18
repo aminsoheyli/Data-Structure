@@ -15,5 +15,17 @@ class StringUtils {
 
             return count
         }
+
+        @JvmStatic
+        fun reverse(str: String?): String {
+            if (str == null)
+                return ""
+
+            val reversed = StringBuilder()
+            for (i in str.length - 1 downTo 0)
+                reversed.append(str[i])
+
+            return reversed.toString()
+        }
     }
 }
