@@ -1,7 +1,8 @@
 package Algorithm.string
 
-import java.util.HashSet
+import java.util.*
 import kotlin.IllegalArgumentException
+import kotlin.collections.HashMap
 
 class StringUtils {
     companion object {
@@ -138,6 +139,20 @@ class StringUtils {
                 words[i] = words[i].substring(0, 1).toUpperCase() + words[i].substring(1).toLowerCase()
 
             return words.joinToString(" ")
+        }
+
+        @JvmStatic
+        fun areAnagrams(first: String, second: String): Boolean {
+            if(first.length != second.length)
+                return false
+
+            val array1 = first.toCharArray()
+            val array2 = second.toCharArray()
+
+            Arrays.sort(array1)
+            Arrays.sort(array2)
+
+            return Arrays.equals(array1, array2)
         }
     }
 }
