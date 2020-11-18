@@ -1,7 +1,6 @@
 package Algorithm.string
 
 import java.util.*
-import kotlin.IllegalArgumentException
 import kotlin.collections.HashMap
 
 class StringUtils {
@@ -141,9 +140,17 @@ class StringUtils {
             return words.joinToString(" ")
         }
 
+
         @JvmStatic
         fun areAnagrams(first: String, second: String): Boolean {
-            if(first.length != second.length)
+            return areAnagrams2(first, second)
+        }
+
+        /**
+         * Runs in O(n log n)
+         */
+        private fun areAnagrams1(first: String, second: String): Boolean {
+            if (first.length != second.length)
                 return false
 
             val array1 = first.toCharArray()
@@ -154,5 +161,27 @@ class StringUtils {
 
             return Arrays.equals(array1, array2)
         }
+
+        /**
+         * Runs in O(n) time
+         */
+        private fun areAnagrams2(first: String?, second: String?): Boolean {
+            var first = first
+            var second = second
+            if (first == null || second == null) return false
+            val ENGLISH_ALPHABET = 26
+            val frequencies = IntArray(ENGLISH_ALPHABET)
+            first = first.toLowerCase()
+            for (i in 0 until first.length) frequencies[first[i] - 'a']++
+            second = second.toLowerCase()
+            for (i in 0 until second.length) {
+                val index = second[i] - 'a'
+                if (frequencies[index] == 0) return false
+                frequencies[index]--
+            }
+            return true
+        }
     }
+
+
 }
