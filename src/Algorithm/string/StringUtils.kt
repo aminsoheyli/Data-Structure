@@ -27,5 +27,18 @@ class StringUtils {
 
             return reversed.toString()
         }
+
+        @JvmStatic
+        fun reverseWords(sentence: String?): String {
+            if (sentence == null)
+                return ""
+
+            val words = sentence.trim().split(' ')
+            val reversed = StringBuilder()
+            for (i in words.size - 1 downTo 0)
+                reversed.append(words[i] + " ")
+
+            return  reversed.toString().trim()
+        }
     }
 }
