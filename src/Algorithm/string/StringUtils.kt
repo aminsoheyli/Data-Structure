@@ -127,5 +127,17 @@ class StringUtils {
 
             return result
         }
+
+        @JvmStatic
+        fun capitalizeWords(sentence: String?): String {
+            if (sentence == null || sentence.trim().isEmpty())
+                return ""
+
+            val words = sentence.trim().replace(Regex(" +"), " ").split(" ").toMutableList()
+            for (i in words.indices)
+                words[i] = words[i].substring(0, 1).toUpperCase() + words[i].substring(1).toLowerCase()
+
+            return words.joinToString(" ")
+        }
     }
 }
