@@ -106,5 +106,26 @@ class StringUtils {
 
             return result
         }
+
+        @JvmStatic
+        fun getMaxOccurringASCIIChar(str: String?): Char {
+            if (str == null || str.isEmpty())
+                throw IllegalArgumentException()
+
+            val ASCII_SIZE = 256
+            val frequencies = IntArray(ASCII_SIZE)
+            for (ch in str)
+                frequencies[ch.toInt()]++
+
+            var max = 0
+            var result = ' '
+            for (i in frequencies.indices)
+                if (frequencies[i] > max) {
+                    max = frequencies[i]
+                    result = i.toChar()
+                }
+
+            return result
+        }
     }
 }
