@@ -1,7 +1,7 @@
 package Algorithm.string
 
-import java.lang.IllegalArgumentException
 import java.util.HashSet
+import kotlin.IllegalArgumentException
 
 class StringUtils {
     companion object {
@@ -84,6 +84,27 @@ class StringUtils {
                 }
 
             return output.toString()
+        }
+
+        @JvmStatic
+        fun getMaxOccurringChar(str: String?): Char {
+            if (str == null || str.isEmpty())
+                throw IllegalArgumentException()
+
+            val frequencies = HashMap<Char, Int>()
+
+            for (ch in str)
+                frequencies.put(ch, (frequencies[ch] ?: 0) + 1)
+
+            var max = 0
+            var result = ' '
+            for (ch in frequencies.keys)
+                if (frequencies[ch] ?: 0 > max) {
+                    max = frequencies[ch] ?: 0
+                    result = ch
+                }
+
+            return result
         }
     }
 }
